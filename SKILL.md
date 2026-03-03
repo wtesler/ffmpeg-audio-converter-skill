@@ -16,7 +16,11 @@ When the user asks to "convert" movie audio:
      `python3 {baseDir}/convert_audio.py "<Movie Title>" "<Format>"`
    - **AMBIGUITY:** If the script outputs "Multiple matches found", relay the numbered list to the user and ask them to select a number or provide a more specific title.
    - **MONITORING:** The script outputs progress in the format `Progress: X%`. Relay these updates to the user via Telegram (e.g., at 10%, 20%, etc.). 
-   - **COMPLETION:** Once the output like `Conversion Complete: <path>` appears, send a final confirmation message via Telegram.
+   - **COMPLETION:** Once the output like `Conversion Complete: <path>` appears, send a final completion message via Telegram and proceed to Phase 2.
+ 
+3. **Phase 2: Plex Library Refresh**
+   - **ACTION:** Trigger the `scan-plex-skill` to scan for the new file.
+   - **TELEGRAM:** Notify the user: "✅ **Plex Library Updated!**" once the scan is finished.
 
 ## Global Guardrails
 - **PATH SAFETY:** Always use recursive walking to find files, as movies may be nested in folders like `Movies/Title/File.mkv`.
